@@ -36,34 +36,35 @@ Ensure you have the following installed:
 git clone https://github.com/Manimaran-M3/SpeechTranscriptionApp.git
 cd SpeechTranscriptionApp/backend
 
-2️⃣ Create a virtual environment & activate it:
+2️⃣ **Create a virtual environment & activate it:**
 
 python -m venv venv
 source venv/Scripts/activate  # On Windows
 
-3️⃣ Install dependencies:
+3️⃣ **Install dependencies:**
 
 pip install -r requirements.txt
 
-4️⃣ Run the Flask backend:
+4️⃣ **Run the Flask backend:**
 
 python backend.py
 
  The backend will start on http://127.0.0.1:5000
 
-Frontend Setup (React Native + Expo) 📱
-1️⃣ Navigate to the frontend directory:
+## **Frontend Setup (React Native + Expo) 📱** 
+
+1️⃣ **Navigate to the frontend directory:**
 
 cd ../frontend
 
-2️⃣ Install dependencies:
+2️⃣** Install dependencies:**
 
 npm install
 
-3️⃣ Run the app in Expo:
+3️⃣ **Run the app in Expo:**
 
 npm start
 
-4️⃣ Open the app on your phone using Expo Go OR in a web browser:
+4️⃣ **Open the app on your phone using Expo Go OR in a web browser:**
 
 npm run web
