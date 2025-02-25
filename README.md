@@ -32,7 +32,7 @@ Ensure you have the following installed:
 ## **Backend Setup (Flask + Whisper) 🖥️**  
 
 1️⃣ **Clone the repository:**  
-```sh
+
 git clone https://github.com/Manimaran-M3/SpeechTranscriptionApp.git
 cd SpeechTranscriptionApp/backend
 
