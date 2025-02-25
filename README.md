@@ -32,7 +32,7 @@ Ensure you have the following installed:
 ## **Backend Setup (Flask + Whisper) 🖥️**  
 
 1️⃣ **Clone the repository:**  
-
+```sh
 git clone https://github.com/Manimaran-M3/SpeechTranscriptionApp.git
 cd SpeechTranscriptionApp/backend
 
@@ -50,6 +50,8 @@ pip install -r requirements.txt
 python backend.py
 
  The backend will start on http://127.0.0.1:5000
+
+---
 
 ## **Frontend Setup (React Native + Expo) 📱** 
 
