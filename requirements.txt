@@ -4,3 +4,32 @@ openai-whisper
 ffmpeg-python
 numpy
 torch
+
+pipeline {
+    agent any
+    tools {
+        maven 'Maven'
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Manimaran-M3/MeetScribe2.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                bat 'mvn -f speech-transcription-backend/pom.xml clean package -DskipTests'
+            }
+        }
+        stage('Test') {
+            steps {
+                bat 'mvn -f speech-transcription-backend/pom.xml test -DskipTests'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying application...'
+            }
+        }
+    }
+}
