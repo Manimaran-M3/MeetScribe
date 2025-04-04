@@ -33,3 +33,35 @@ pipeline {
         }
     }
 }
+
+
+
+pipeline {
+    agent any
+    tools {
+        maven 'Maven'
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/KabilanTM/Maven_test.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                bat 'mvn -f demo/pom.xml clean package -DskipTests'
+            }
+        }
+        stage('Test') {
+            steps {
+                bat 'mvn -f demo/pom.xml test -DskipTests'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying application...'
+            }
+        }
+    }
+}
+
